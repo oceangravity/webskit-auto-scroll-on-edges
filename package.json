@@ -1,6 +1,6 @@
 {
   "name": "webskit-auto-scroll-on-edges",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatic scroll when reach specific container edges",
   "main": "dist/index.js",
   "scripts": {

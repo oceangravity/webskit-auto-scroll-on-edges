@@ -3,9 +3,9 @@ module.exports = class AutoScroll {
     this.timer = null
   }
 
-  handle (event, container, et, el, eb, er) {
+  handle (event, container, et, el, eb, er, yBottom = 0, xRight = 0) {
     const me = this
-    const viewportX = event.clientX
+    const viewportX = event.clientX - container.offsetLeft
     const viewportY = event.clientY - container.offsetTop
     const viewportWidth = container.clientWidth
     const viewportHeight = container.clientHeight
@@ -14,9 +14,9 @@ module.exports = class AutoScroll {
     const edgeBottom = viewportHeight - eb
     const edgeRight = viewportWidth - er
     const isInLeftEdge = viewportX < el
-    const isInRightEdge = viewportX > edgeRight
+    const isInRightEdge = viewportX + xRight > edgeRight
     const isInTopEdge = viewportY < et
-    const isInBottomEdge = viewportY > edgeBottom
+    const isInBottomEdge = viewportY + yBottom > edgeBottom
 
     if (!(isInLeftEdge || isInRightEdge || isInTopEdge || isInBottomEdge)) {
       return
