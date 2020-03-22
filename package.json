@@ -1,6 +1,6 @@
 {
   "name": "webskit-auto-scroll-on-edges",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "Automatic scroll when reach specific container edges",
   "main": "dist/index.js",
   "scripts": {
@@ -20,7 +20,8 @@
     "eslint-plugin-vue": "^5.1.0",
     "mocha": "^7.1.0",
     "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "minimist": ">=1.2.2"
   },
   "repository": {
     "type": "git",
@@ -34,5 +35,8 @@
   "bugs": {
     "url": "https://github.com/oceangravity/webskit-auto-scroll-on-edges/issues"
   },
-  "homepage": "https://github.com/oceangravity/webskit-auto-scroll-on-edges#readme"
+  "homepage": "https://github.com/oceangravity/webskit-auto-scroll-on-edges#readme",
+  "dependencies": {
+    "yarn": "^1.22.4"
+  }
 }

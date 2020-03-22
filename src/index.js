@@ -5,8 +5,9 @@ module.exports = class AutoScroll {
 
   handle (event, container, et, el, eb, er, yBottom = 0, xRight = 0) {
     const me = this
-    const viewportX = event.clientX - container.offsetLeft
-    const viewportY = event.clientY - container.offsetTop
+    const rect = container.getBoundingClientRect()
+    const viewportX = event.clientX - rect.left
+    const viewportY = event.clientY - rect.top
     const viewportWidth = container.clientWidth
     const viewportHeight = container.clientHeight
     const edgeTop = et
@@ -14,9 +15,9 @@ module.exports = class AutoScroll {
     const edgeBottom = viewportHeight - eb
     const edgeRight = viewportWidth - er
     const isInLeftEdge = viewportX < el
-    const isInRightEdge = viewportX + xRight > edgeRight
+    const isInRightEdge = (viewportX + xRight) > edgeRight
     const isInTopEdge = viewportY < et
-    const isInBottomEdge = viewportY + yBottom > edgeBottom
+    const isInBottomEdge = (viewportY + yBottom) > edgeBottom
 
     if (!(isInLeftEdge || isInRightEdge || isInTopEdge || isInBottomEdge)) {
       return
@@ -53,7 +54,7 @@ module.exports = class AutoScroll {
         intensity = (edgeLeft - viewportX) / el
         nextScrollX = nextScrollX - maxStep * intensity
       } else if (isInRightEdge && canScrollRight) {
-        intensity = (viewportX - edgeRight) / er
+        intensity = ((viewportX + xRight) - edgeRight) / er
         nextScrollX = nextScrollX + maxStep * intensity
       }
 
@@ -62,7 +63,7 @@ module.exports = class AutoScroll {
         // if (intensity >= 0.3) intensity = 0.1
         nextScrollY = nextScrollY - maxStep * intensity
       } else if (isInBottomEdge && canScrollDown) {
-        intensity = (viewportY - edgeBottom) / eb
+        intensity = ((viewportY + yBottom) - edgeBottom) / eb
         nextScrollY = nextScrollY + maxStep * intensity
       }
 
